@@ -1,12 +1,16 @@
 const assert = require('assert');
 const parserService = require('../../services/parser');
-describe('Main functions', ()=> {
+describe('parserService functions', ()=> {
   it('Should not parse invalids input', () => {
-    const invalidInputs = ['', [], 2, ''];
+    const invalidInputs = [
+      '',
+      [],
+      2,
+      'API_KEY=XXXX stock.rb AAPL Jan 1'
+    ];
     for(const ip of invalidInputs) {
-      const { parsed, err } = parserService.cli(ip);
+      const { err } = parserService.cli(ip);
       assert.notEqual(err, null);
-      assert.equal(parsed, null);
     }
   });
 
@@ -33,6 +37,30 @@ describe('Main functions', ()=> {
     ];
     for(const ip of validInputs) {
       assert.equal(true, parserService.isApiKeyValid(ip));
+    }
+  });
+
+  it('Should parse valid inputs', () => {
+    const validInputs = [
+      'API_KEY=XXXX stock.rb AAPL Jan 1 2018',
+      'API_KEY=XXXX stock.rb AAPL Jan 1 2018 - Jan 5 2018'
+    ];
+    const expectedParsed = [
+      {
+        apiKey: 'API_KEY=XXXX',
+        stockSymbol: 'AAPL',
+        startDate: 'Jan-1-2018'
+      },
+      {
+        apiKey: 'API_KEY=XXXX',
+        stockSymbol: 'AAPL',
+        startDate: 'Jan-1-2018',
+        endDate: 'Jan-5-2018'
+      }
+    ];
+    for(let i = 0; i < validInputs.length; i++) {
+      const {parsed} = parserService.cli(validInputs[i]);
+      assert.deepEqual(expectedParsed[i], parsed);
     }
   });
 
