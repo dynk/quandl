@@ -38,14 +38,14 @@ const cli = (input) => {
   if(inputArray.length < 6) {
     return {err: 'not valid start date'};
   }
-  const startDate = `${inputArray[3]}-${inputArray[4]}-${inputArray[5]}`;
+  const startDate = `start_date=${inputArray[3]}-${inputArray[4]}-${inputArray[5]}`;
   const parsed = {
     apiKey,
     stockSymbol,
     startDate
   };
   if(inputArray.length > 9){
-    parsed.endDate = `${inputArray[7]}-${inputArray[8]}-${inputArray[9]}`;
+    parsed.endDate = `end_date=${inputArray[7]}-${inputArray[8]}-${inputArray[9]}`;
   }
   return {parsed};
 };

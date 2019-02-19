@@ -49,13 +49,13 @@ describe('parserService functions', ()=> {
       {
         apiKey: 'API_KEY=XXXX',
         stockSymbol: 'AAPL',
-        startDate: 'Jan-1-2018'
+        startDate: 'start_date=Jan-1-2018'
       },
       {
         apiKey: 'API_KEY=XXXX',
         stockSymbol: 'AAPL',
-        startDate: 'Jan-1-2018',
-        endDate: 'Jan-5-2018'
+        startDate: 'start_date=Jan-1-2018',
+        endDate: 'end_date=Jan-5-2018'
       }
     ];
     for(let i = 0; i < validInputs.length; i++) {
