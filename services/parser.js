@@ -50,7 +50,27 @@ const cli = (input) => {
   return {parsed};
 };
 
+const parseResponseQuandl = (rawQuandlData) => {
+  if(!rawQuandlData) {
+    throw new Error('rawQuandlData cannot be empty');
+  }
+  const {dataset_data: dataSet} = rawQuandlData;
+  const {data} = dataSet;
+  return data.map(parseOne);
+
+  function parseOne(e) {
+    return {
+      date: e[0],
+      open: e[1],
+      high: e[2],
+      low: e[3],
+      close: e[4]
+    };
+  }
+};
+
 module.exports = {
   cli,
-  isApiKeyValid
+  isApiKeyValid,
+  parseResponseQuandl
 };
