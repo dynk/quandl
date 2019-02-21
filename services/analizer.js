@@ -1,0 +1,15 @@
+const drawdowns = (stocks) => {
+  if(!stocks || !Array.isArray(stocks)) {
+    throw new Error('stocks value doesnt exist or is not an Array');
+  }
+
+  return stocks.map(calculate);
+  function calculate(stock) {
+    const {high, low} = stock;
+    return Math.round(((high-low)/high)*1000)/10;
+  }
+};
+
+module.exports = {
+  drawdowns
+};
