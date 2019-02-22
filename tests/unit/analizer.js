@@ -24,14 +24,26 @@ describe('ANALYZER functions', ()=> {
       close: 172.26 }
   ];
   it('should calculate Drawdowns', () => {
-    const result = service.drawdowns(stocks);
+    const result = service.caldulateDrawdowns(stocks);
     const expected = [ 1.3, 0.8, 1.5, 1.8 ];
     assert.deepEqual(expected, result);
   });
 
   it('should calculate rate of return', () => {
-    const result = service.rateOfReturn(stocks);
-    const expected = 1.6;
-    assert.equal(expected, result);
+    const result = service.calculateReturn(stocks);
+    console.log('**************result',result);
+    const expected = {
+      start: {
+        date: '2018-01-02',
+        close: 172.26
+      },
+      end: {
+        date: '2018-01-05',
+        close: 175
+      },
+      rateOfReturn: 1.6,
+      absolutReturn: 2.740000000000009
+    };
+    assert.deepEqual(expected, result);
   });
 });
