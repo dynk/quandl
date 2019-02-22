@@ -77,7 +77,6 @@ describe('ANALYZER functions', ()=> {
     for(let i = 0; i < validStocks.length; i++) {
       const expected = expectedList[i];
       const result = service.calculateReturn(validStocks[i]);
-      console.log('result*******', result);
       assert.deepEqual(expected, result);
     }
   });
