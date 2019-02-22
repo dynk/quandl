@@ -6,6 +6,9 @@ const calculateOneDrawdown = (stock) => {
     throw new Error('stocks value doesnt exist or is not an Array');
   }
   const {high, low} = stock;
+  if(!high) {
+    return;
+  }
   return Math.round(((high-low)/high)*1000)/10;
 };
 
@@ -23,7 +26,7 @@ const calculateReturn = (stocks) => {
   const [minIndex, maxIndex] = [utilService.getMinDateIndex(stocks), utilService.getMaxDateIndex(stocks)];
   const [vi, vf] = [stocks[minIndex].close, stocks[maxIndex].close];
   const absolutReturn = vf - vi;
-  const rateOfReturn = Math.round((absolutReturn/ vi)*1000)/10;
+  const rateOfReturn = vi ? Math.round((absolutReturn/ vi)*1000)/10 : null;
   const start = {
     date: stocks[minIndex].date,
     close: stocks[minIndex].close
