@@ -15,5 +15,5 @@ The required input MUST follow the format:
 # Send email
 If you want to send email with the report you need to create the .env file and insert the variables:
 
-EMAIL_SENDER_ACCOUNT=<your-gmail-account>
-PASS_SENDER_ACCOUNT=<your-gmail-password>
+EMAIL_SENDER_ACCOUNT=YOUR GMAIL ACCOUN
+PASS_SENDER_ACCOUNT=YOUR PASSWORD
