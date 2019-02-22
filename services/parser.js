@@ -33,21 +33,21 @@ const cli = (input) => {
   }
   const apiKeyArray = apiKey.split('=');
   apiKey = `api_key=${apiKeyArray[1]}`;
-  const stockSymbol = inputArray[2];
+  const stockSymbol = inputArray[1];
   if(!stockSymbol || !stockSymbol.length) {
     return {err: 'not valid stock symbol'};
   }
   if(inputArray.length < 6) {
     return {err: 'not valid start date'};
   }
-  const startDate = `start_date=${inputArray[3]}-${inputArray[4]}-${inputArray[5]}`;
+  const startDate = `start_date=${inputArray[2]}-${inputArray[3]}-${inputArray[4]}`;
   const parsed = {
     apiKey,
     stockSymbol,
     startDate
   };
-  if(inputArray.length > 9){
-    parsed.endDate = `end_date=${inputArray[7]}-${inputArray[8]}-${inputArray[9]}`;
+  if(inputArray.length > 8){
+    parsed.endDate = `end_date=${inputArray[6]}-${inputArray[7]}-${inputArray[8]}`;
   }
   return {parsed};
 };
