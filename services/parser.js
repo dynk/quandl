@@ -27,10 +27,12 @@ const cli = (input) => {
     return {err: 'not valid input'};
   }
   const inputArray = input.split(' ');
-  const apiKey = inputArray[0];
+  let apiKey = inputArray[0];
   if(!isApiKeyValid(apiKey)) {
     return {err: 'not valid apiKey'};
   }
+  const apiKeyArray = apiKey.split('=');
+  apiKey = `api_key=${apiKeyArray[1]}`;
   const stockSymbol = inputArray[2];
   if(!stockSymbol || !stockSymbol.length) {
     return {err: 'not valid stock symbol'};

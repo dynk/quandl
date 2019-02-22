@@ -18,11 +18,7 @@ const makeReport = (stocks) => {
   result += `\nMaximum drawdown: -${macDraw.drawdown}% (${macDraw.high} on ${macDraw.date} -> ${macDraw.low} on ${macDraw.date}) \n\n`;
   const signal = (rateOfReturnReport.rateOfReturn >= 0) ? '+' : '-';
   result += `Return: ${rateOfReturnReport.absolutReturn} [${signal}${rateOfReturnReport.rateOfReturn}] (${rateOfReturnReport.start.close} on ${rateOfReturnReport.start.date} -> ${rateOfReturnReport.end.close} on ${rateOfReturnReport.end.date})`;
-  console.log(result);
-};
-
-const runUsingQuandl = () => {
-
+  return result;
 };
 
 const insertDrawdown = (stocks) => {
@@ -37,6 +33,5 @@ const insertDrawdown = (stocks) => {
 
 module.exports = {
   makeReport,
-  runUsingQuandl,
   insertDrawdown
 };
